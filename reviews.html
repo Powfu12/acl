@@ -780,6 +780,18 @@
                         </select>
                     </div>
 
+                    <!-- Username (optional) -->
+                    <div class="form-group">
+                        <label class="form-label">Username (optional)</label>
+                        <input
+                            type="text"
+                            class="form-input"
+                            id="usernameInput"
+                            placeholder="Leave blank to post anonymously"
+                            maxlength="30"
+                        >
+                    </div>
+
                     <!-- Review Text -->
                     <div class="form-group">
                         <label class="form-label">Your Review</label>
@@ -1159,7 +1171,8 @@
                 return;
             }
 
-            const isAnonymous = true; // ✅ always true when passing the check
+            const usernameVal = document.getElementById('usernameInput').value.trim();
+            const isAnonymous = usernameVal.length === 0;
 
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
@@ -1174,7 +1187,7 @@
                     reviewText: cleanedReviewText,       // stored without the /anon prefix
                     isAnonymous: isAnonymous,            // ✅ must be true
                     packageType: packageType,
-                    authorName: 'Anonymous',             // ✅ enforce anonymous author
+                    authorName: isAnonymous ? 'Anonymous' : usernameVal,
                     likes: 0,
                     timestamp: Date.now(),
                     createdAt: new Date().toISOString(),
