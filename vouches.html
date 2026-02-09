@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vouches - AnonClub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #475569;
+            --gray-light: #cbd5e1;
+            --border: #334155;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--white);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0,0,0,.8),
+                        0 0 80px rgba(99,102,241,.25);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo-btn {
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99,102,241,.4);
+        }
+
+        .nav-btn.active {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .nav-btn.active:hover {
+            background: var(--success);
+            box-shadow: 0 10px 25px rgba(16,185,129,.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-title p {
+            color: var(--gray-light);
+            font-size: 1.1rem;
+        }
+
+        /* Photo Grid – masonry via CSS columns */
+        .photo-grid {
+            columns: 3;
+            column-gap: 1.25rem;
+        }
+
+        .photo-card {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.5);
+            transition: all 0.3s;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 80px rgba(99,102,241,.35);
+        }
+
+        .photo-card img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            cursor: zoom-out;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 12px;
+            box-shadow: 0 30px 100px rgba(0,0,0,.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .photo-grid {
+                columns: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .photo-grid {
+                columns: 2;
+                column-gap: 0.75rem;
+            }
+
+            .photo-card {
+                margin-bottom: 0.75rem;
+                border-radius: 12px;
+            }
+
+            .page-title h1 {
+                font-size: 1.75rem;
+            }
+
+            .page-title p {
+                font-size: 0.95rem;
+            }
+
+            .header-nav .hide-mobile {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo-btn" target="_blank">
+                <div class="logo">
+                    <i class="fas fa-credit-card"></i>
+                    <span>AnonClub</span>
+                </div>
+            </a>
+            <div class="header-nav">
+                <a href="reviews.html" class="nav-btn">
+                    <i class="fas fa-comments"></i>
+                    <span>Reviews</span>
+                </a>
+                <a href="https://t.me/ANONCLUBADMIN" class="nav-btn hide-mobile" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    <span>Telegram Support</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-title">
+            <h1><i class="fas fa-shield-check"></i> Vouches</h1>
+            <p>Proof from real customers</p>
+        </div>
+
+        <div class="photo-grid" id="photoGrid">
+            <!--
+                ADD YOUR VOUCH IMAGES HERE
+                Put your image files in the vouches/ folder, then add a card for each:
+
+                <div class="photo-card">
+                    <img src="vouches/1.png" alt="Vouch" loading="lazy">
+                </div>
+            -->
+        </div>
+    </div>
+
+    <!-- Lightbox (click to zoom) -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="Vouch">
+    </div>
+
+    <script>
+        // Lightbox logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        document.getElementById('photoGrid').addEventListener('click', function(e) {
+            const img = e.target.closest('.photo-card img');
+            if (!img) return;
+            lightboxImg.src = img.src;
+            lightbox.classList.add('open');
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightboxImg) return;
+            lightbox.classList.remove('open');
+        });
+
+        document.getElementById('lightboxClose').addEventListener('click', function() {
+            lightbox.classList.remove('open');
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+    </script>
+</body>
+</html>
