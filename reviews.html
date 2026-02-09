@@ -124,25 +124,32 @@
             text-decoration: none;
         }
 
+        .vouches-banner {
+            grid-column: 1 / -1;
+        }
+
         .vouches-btn {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(16, 185, 129, 0.1);
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1.1rem 2rem;
+            background: rgba(16, 185, 129, 0.08);
             border: 1px solid var(--success);
-            border-radius: 50px;
+            border-radius: 16px;
             color: var(--white);
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.05rem;
+            font-weight: 600;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 80px rgba(16,185,129,.15);
         }
 
         .vouches-btn:hover {
             background: var(--success);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(16,185,129,.4);
+            box-shadow: 0 20px 50px rgba(16,185,129,.5);
         }
 
         .contact-btn:hover {
@@ -646,7 +653,7 @@
     .content-grid {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 1.5rem;
     }
 
     .submit-review-section {
@@ -656,15 +663,14 @@
         width: 100%;
         max-width: 520px;
         margin: 0 auto;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border-bottom: none;
+    }
+
+    .vouches-banner {
+        order: 2;
     }
 
     .reviews-section {
-        order: 2;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        order: 3;
     }
 
     .stats-section {
@@ -704,10 +710,6 @@
                 <i class="fas fa-credit-card"></i>
                 <span>AnonClub</span> 
             </div> </a>
-            <a href="vouches.html" class="vouches-btn">
-                <i class="fab fa-telegram"></i>
-                <span>Vouches</span>
-            </a>
             <div class="header-contact">
                 <a href="https://t.me/ANONCLUBADMIN" class="contact-btn" target="_blank">
                     <i class="fab fa-telegram"></i>
@@ -768,6 +770,15 @@
                         <p>Be the first to leave a review!</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Vouches Banner -->
+            <div class="vouches-banner">
+                <a href="vouches.html" class="vouches-btn">
+                    <i class="fas fa-shield-check"></i>
+                    <span>Vouches</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
 
             <!-- Submit Review Form -->
