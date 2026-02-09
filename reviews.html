@@ -124,6 +124,27 @@
             text-decoration: none;
         }
 
+        .vouches-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .vouches-btn:hover {
+            background: var(--success);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16,185,129,.4);
+        }
+
         .contact-btn:hover {
             background: var(--primary);
             transform: translateY(-2px);
@@ -678,6 +699,10 @@
                 <i class="fas fa-credit-card"></i>
                 <span>AnonClub</span> 
             </div> </a>
+            <a href="https://t.me/ANONCLUBVOUCHES" class="vouches-btn" target="_blank">
+                <i class="fab fa-telegram"></i>
+                <span>Vouches</span>
+            </a>
             <div class="header-contact">
                 <a href="https://t.me/ANONCLUBADMIN" class="contact-btn" target="_blank">
                     <i class="fab fa-telegram"></i>
