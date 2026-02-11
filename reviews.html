@@ -677,14 +677,13 @@
 
         @media (max-width: 768px) {
     .container {
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
     }
 
-    /* 🔥 mobile: form first, vouches, then reviews – one continuous card */
     .content-grid {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 1.5rem;
     }
 
     .submit-review-section {
@@ -693,31 +692,57 @@
         width: 100%;
     }
 
-    .vouches-banner {
-        margin-bottom: 1.5rem;
-    }
-
     .reviews-section {
         order: 2;
+        padding: 1.5rem;
+    }
+
+    .vouches-banner {
+        margin-bottom: 0;
     }
 
     .stats-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-icon {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
     }
 
     .header-contact {
         display: none;
     }
 
+    .review-card {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
     .review-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .review-footer {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        margin-bottom: 1.25rem;
     }
 }
     </style>
